@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bboiwhhes5oxq"]
 
 [ext_resource type="Script" uid="uid://b76uqo0bpik4" path="res://Scripts/AssemblyCollision.gd" id="1_5a7ea"]
-[ext_resource type="Script" uid="uid://vn3ro53r1j0n" path="res://player.gd" id="1_5ukr8"]
+[ext_resource type="Script" uid="uid://bnf473dl8kfj6" path="res://Scripts/player.gd" id="1_5ukr8"]
 [ext_resource type="Texture2D" uid="uid://dffe3c78lha1g" path="res://icon.svg" id="1_a02cp"]
 [ext_resource type="Script" uid="uid://dkb6rh263gav3" path="res://Scripts/IngredientDragArea2D.gd" id="2_go701"]
 [ext_resource type="Script" uid="uid://b0bommg7wiw43" path="res://Scripts/order_board.gd" id="4_8j60k"]
@@ -21,6 +21,7 @@ size = Vector2(100, 100)
 script = ExtResource("1_5ukr8")
 
 [node name="Kitchen" type="Node2D" parent="Player" unique_id=705213045]
+unique_name_in_owner = true
 
 [node name="FoodTable" type="Node2D" parent="Player/Kitchen" unique_id=1024811331]
 
@@ -82,6 +83,7 @@ offset_bottom = 946.17645
 text = "Weezing"
 
 [node name="SmokeRoom" type="Node2D" parent="Player" unique_id=1828866032]
+unique_name_in_owner = true
 
 [node name="NicotineBar" type="TextureProgressBar" parent="Player" unique_id=704873316]
 offset_left = 739.0
@@ -91,3 +93,5 @@ offset_bottom = 57.0
 value = 50.0
 nine_patch_stretch = true
 texture_progress = SubResource("PlaceholderTexture2D_oqjqy")
+
+[connection signal="pressed" from="Player/Kitchen/Control/GoToSmokeButton" to="Player" method="_on_go_to_smoke_button_pressed"]
