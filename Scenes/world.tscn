@@ -84,6 +84,14 @@ text = "Weezing"
 
 [node name="SmokeRoom" type="Node2D" parent="Player" unique_id=1828866032]
 unique_name_in_owner = true
+visible = false
+
+[node name="GoToKitchen" type="Button" parent="Player/SmokeRoom" unique_id=1559058605]
+offset_left = 1728.0
+offset_top = 859.0
+offset_right = 1806.0
+offset_bottom = 946.17645
+text = "Donna"
 
 [node name="NicotineBar" type="TextureProgressBar" parent="Player" unique_id=704873316]
 offset_left = 739.0
@@ -95,3 +103,4 @@ nine_patch_stretch = true
 texture_progress = SubResource("PlaceholderTexture2D_oqjqy")
 
 [connection signal="pressed" from="Player/Kitchen/Control/GoToSmokeButton" to="Player" method="_on_go_to_smoke_button_pressed"]
+[connection signal="pressed" from="Player/SmokeRoom/GoToKitchen" to="Player" method="_on_go_to_kitchen_pressed"]
