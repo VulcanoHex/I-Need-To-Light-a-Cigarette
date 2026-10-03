@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b7jff7tghyfn6"]
+
+[ext_resource type="Texture2D" uid="uid://dffe3c78lha1g" path="res://icon.svg" id="1_6bt6s"]
+
+[node name="NinePatchRect" type="NinePatchRect" unique_id=804915705]
+offset_right = 203.0
+offset_bottom = 203.0
+texture = ExtResource("1_6bt6s")

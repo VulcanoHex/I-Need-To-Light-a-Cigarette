@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://bboiwhhes5oxq"]
+
+[ext_resource type="Script" uid="uid://b76uqo0bpik4" path="res://Scripts/AssemblyCollision.gd" id="1_5a7ea"]
+[ext_resource type="Script" uid="uid://vn3ro53r1j0n" path="res://player.gd" id="1_5ukr8"]
+[ext_resource type="Texture2D" uid="uid://dffe3c78lha1g" path="res://icon.svg" id="1_a02cp"]
+[ext_resource type="Script" uid="uid://dkb6rh263gav3" path="res://Scripts/IngredientDragArea2D.gd" id="2_go701"]
+[ext_resource type="Script" uid="uid://b0bommg7wiw43" path="res://Scripts/order_board.gd" id="4_8j60k"]
+[ext_resource type="PackedScene" uid="uid://b7jff7tghyfn6" path="res://Scenes/order.tscn" id="5_fo5ed"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wt5t"]
+size = Vector2(128, 128)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1wt5t"]
+size = Vector2(100, 100)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_oqjqy"]
+
+[node name="World" type="Node2D" unique_id=947603728]
+
+[node name="Player" type="Node2D" parent="." unique_id=365032139]
+script = ExtResource("1_5ukr8")
+
+[node name="Kitchen" type="Node2D" parent="Player" unique_id=705213045]
+
+[node name="FoodTable" type="Node2D" parent="Player/Kitchen" unique_id=1024811331]
+
+[node name="PaninoAssembly" type="Node2D" parent="Player/Kitchen/FoodTable" unique_id=40691010]
+position = Vector2(925, 885)
+
+[node name="Debug text" type="Label" parent="Player/Kitchen/FoodTable/PaninoAssembly" unique_id=448139689]
+offset_left = 88.0
+offset_top = 39.0
+offset_right = 128.0
+offset_bottom = 62.0
+
+[node name="Area2D" type="Area2D" parent="Player/Kitchen/FoodTable/PaninoAssembly" unique_id=2062199293 node_paths=PackedStringArray("debugLabel")]
+script = ExtResource("1_5a7ea")
+debugLabel = NodePath("../Debug text")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/PaninoAssembly/Area2D" unique_id=2107570434]
+texture = ExtResource("1_a02cp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Kitchen/FoodTable/PaninoAssembly/Area2D" unique_id=1214919672]
+shape = SubResource("RectangleShape2D_1wt5t")
+
+[node name="Ingredient1" type="Node2D" parent="Player/Kitchen/FoodTable" unique_id=220065275]
+position = Vector2(558, 508)
+
+[node name="Area2D2" type="Area2D" parent="Player/Kitchen/FoodTable/Ingredient1" unique_id=941254381]
+script = ExtResource("2_go701")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/Ingredient1/Area2D2" unique_id=468126409]
+texture = ExtResource("1_a02cp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Kitchen/FoodTable/Ingredient1/Area2D2" unique_id=708780841]
+shape = SubResource("RectangleShape2D_1wt5t")
+
+[node name="Control" type="Control" parent="Player/Kitchen" unique_id=1813313263]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OrderBoard" type="NinePatchRect" parent="Player/Kitchen/Control" unique_id=1864550557]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 293.0
+offset_bottom = 1078.0
+texture = SubResource("PlaceholderTexture2D_1wt5t")
+script = ExtResource("4_8j60k")
+order_scene = ExtResource("5_fo5ed")
+order_height = 150.0
+order_spacing = 64.0
+
+[node name="GoToSmokeButton" type="Button" parent="Player/Kitchen/Control" unique_id=567364822]
+layout_mode = 0
+offset_left = 1728.0
+offset_top = 859.0
+offset_right = 1806.0
+offset_bottom = 946.17645
+text = "Weezing"
+
+[node name="SmokeRoom" type="Node2D" parent="Player" unique_id=1828866032]
+
+[node name="NicotineBar" type="TextureProgressBar" parent="Player" unique_id=704873316]
+offset_left = 739.0
+offset_top = 17.0
+offset_right = 1236.0
+offset_bottom = 57.0
+value = 50.0
+nine_patch_stretch = true
+texture_progress = SubResource("PlaceholderTexture2D_oqjqy")
