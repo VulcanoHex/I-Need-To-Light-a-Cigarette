@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://dkb6rh263gav3" path="res://Scripts/IngredientDragArea2D.gd" id="2_go701"]
 [ext_resource type="Script" uid="uid://b0bommg7wiw43" path="res://Scripts/order_board.gd" id="4_8j60k"]
 [ext_resource type="PackedScene" uid="uid://b7jff7tghyfn6" path="res://Scenes/order.tscn" id="5_fo5ed"]
+[ext_resource type="Script" uid="uid://bn26m2q0fdm10" path="res://Scripts/SmokeRoom.gd" id="7_o06y3"]
+[ext_resource type="Script" uid="uid://b8s0rcdf2u4ul" path="res://Scripts/area_cigarette.gd" id="8_5v1tr"]
+[ext_resource type="Script" uid="uid://ml8dh0ud3w41" path="res://Scripts/area_lighter.gd" id="8_k7acu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1wt5t"]
 size = Vector2(128, 128)
@@ -13,7 +16,15 @@ size = Vector2(128, 128)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1wt5t"]
 size = Vector2(100, 100)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_oqjqy"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_g4v7s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
+size = Vector2(130, 136)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(127, 124)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yf5fn"]
 
 [node name="World" type="Node2D" unique_id=947603728]
 
@@ -85,6 +96,7 @@ text = "Weezing"
 [node name="SmokeRoom" type="Node2D" parent="Player" unique_id=1828866032]
 unique_name_in_owner = true
 visible = false
+script = ExtResource("7_o06y3")
 
 [node name="GoToKitchen" type="Button" parent="Player/SmokeRoom" unique_id=1559058605]
 offset_left = 1728.0
@@ -93,14 +105,60 @@ offset_right = 1806.0
 offset_bottom = 946.17645
 text = "Donna"
 
-[node name="NicotineBar" type="TextureProgressBar" parent="Player" unique_id=704873316]
+[node name="TempBar" type="TextureProgressBar" parent="Player/SmokeRoom" unique_id=1292582032]
 offset_left = 739.0
 offset_top = 17.0
 offset_right = 1236.0
 offset_bottom = 57.0
-value = 50.0
+step = 0.1
 nine_patch_stretch = true
-texture_progress = SubResource("PlaceholderTexture2D_oqjqy")
+texture_progress = SubResource("PlaceholderTexture2D_g4v7s")
+
+[node name="Cigarette" type="Node2D" parent="Player/SmokeRoom" unique_id=619295634]
+metadata/_edit_group_ = true
+
+[node name="areaCigarette" type="Area2D" parent="Player/SmokeRoom/Cigarette" unique_id=1892124314]
+script = ExtResource("8_5v1tr")
+
+[node name="textCig" type="Sprite2D" parent="Player/SmokeRoom/Cigarette/areaCigarette" unique_id=1432481001]
+position = Vector2(935, 774)
+scale = Vector2(1, 4.75)
+texture = ExtResource("1_a02cp")
+
+[node name="CollisionCig" type="CollisionShape2D" parent="Player/SmokeRoom/Cigarette/areaCigarette" unique_id=373203628]
+position = Vector2(936, 541)
+shape = SubResource("RectangleShape2D_yf5fn")
+
+[node name="Lighter" type="Node2D" parent="Player/SmokeRoom" unique_id=522539455]
+position = Vector2(98, 114)
+metadata/_edit_group_ = true
+
+[node name="areaLighter" type="Area2D" parent="Player/SmokeRoom/Lighter" unique_id=497684855]
+script = ExtResource("8_k7acu")
+
+[node name="textLighter" type="Sprite2D" parent="Player/SmokeRoom/Lighter/areaLighter" unique_id=1194049011]
+position = Vector2(1278, 645)
+texture = ExtResource("1_a02cp")
+
+[node name="CollisionLighter" type="CollisionShape2D" parent="Player/SmokeRoom/Lighter/areaLighter" unique_id=490350990]
+position = Vector2(1282, 646)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="NicotineBar" type="TextureProgressBar" parent="Player" unique_id=704873316]
+modulate = Color(1, 1, 0.25882354, 1)
+offset_left = 739.0
+offset_top = 17.0
+offset_right = 1236.0
+offset_bottom = 57.0
+step = 0.1
+value = 10.0
+nine_patch_stretch = true
+texture_progress = SubResource("PlaceholderTexture2D_yf5fn")
 
 [connection signal="pressed" from="Player/Kitchen/Control/GoToSmokeButton" to="Player" method="_on_go_to_smoke_button_pressed"]
+[connection signal="its_over" from="Player/SmokeRoom" to="Player/SmokeRoom/Cigarette/areaCigarette" method="_on_smoke_room_its_over"]
 [connection signal="pressed" from="Player/SmokeRoom/GoToKitchen" to="Player" method="_on_go_to_kitchen_pressed"]
+[connection signal="pressed" from="Player/SmokeRoom/GoToKitchen" to="Player/SmokeRoom" method="_on_go_to_kitchen_pressed"]
+[connection signal="area_shape_entered" from="Player/SmokeRoom/Cigarette/areaCigarette" to="Player/SmokeRoom/Cigarette/areaCigarette" method="_on_area_shape_entered"]
+[connection signal="area_shape_exited" from="Player/SmokeRoom/Cigarette/areaCigarette" to="Player/SmokeRoom/Cigarette/areaCigarette" method="_on_area_shape_exited"]
+[connection signal="time_to_smoke" from="Player/SmokeRoom/Cigarette/areaCigarette" to="Player/SmokeRoom" method="_on_area_cigarette_time_to_smoke"]
