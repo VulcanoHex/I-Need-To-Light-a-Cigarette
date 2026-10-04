@@ -156,6 +156,14 @@ value = 10.0
 nine_patch_stretch = true
 texture_progress = SubResource("PlaceholderTexture2D_yf5fn")
 
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=873944172]
+unique_name_in_owner = true
+bus = &"Music"
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="." unique_id=138170603]
+unique_name_in_owner = true
+bus = &"Sound Effects"
+
 [connection signal="startSendingOrders" from="Player" to="Player" method="_on_start_sending_orders"]
 [connection signal="stopSendingOrders" from="Player" to="Player" method="_on_stop_sending_orders"]
 [connection signal="pressed" from="Player/Kitchen/Control/GoToSmokeButton" to="Player" method="_on_go_to_smoke_button_pressed"]

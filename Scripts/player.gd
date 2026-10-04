@@ -2,7 +2,9 @@ extends Node2D
 @onready var kitchen = %Kitchen
 @onready var smokeRoom = %SmokeRoom
 @onready var orderBoard = %OrderBoard
-@export var startingOrderWaitSeconds: float = 1.2;
+
+
+@export var startingOrderWaitSeconds: float = 5;
 @export var decayRatePerOrder: float = 0.1;
 # High (10): more consistent, Low (1): more unpredictable 1 is poisson
 @export var orderShapeVariance: int = 7
@@ -20,7 +22,7 @@ func _ready() -> void:
 	
 #	Remove before flight
 	startSendingOrders.emit()
-	await get_tree().create_timer(10).timeout
+	await get_tree().create_timer(300).timeout
 	stopSendingOrders.emit()
 #	Remove before flight
 	
@@ -46,7 +48,7 @@ func send_order() -> void:
 	#send order
 	print("sentorder")
 	orderBoard.spawn_order.emit({})
-	if(avg_wait > 1.0):
+	if(avg_wait > 1.2):
 		avg_wait -= decayRatePerOrder
 	make_orders()
 

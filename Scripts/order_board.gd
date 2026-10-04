@@ -1,6 +1,9 @@
 extends NinePatchRect
 class_name OrderBoard
 
+@onready var sfxPlayer:AudioStreamPlayer = %SFXPlayer
+const NEW_ORDER_SFX = preload("res://Assets/sounds/sfx/NewOrder.mp3")
+
 @export var order_scene: PackedScene
 @export var order_height: float = 90.0
 @export var order_spacing: float = 10.0
@@ -33,7 +36,9 @@ func _on_spawn_order(order_details: Dictionary) -> void:
 
 	if new_order.has_method("setup_order"):
 		new_order.setup_order(order_details)
-
+	
+	sfxPlayer.stream = NEW_ORDER_SFX
+	sfxPlayer.play()
 	add_child(new_order)
 	
 	# Set initial size width to match board padding
