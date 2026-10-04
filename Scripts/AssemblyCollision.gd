@@ -27,7 +27,7 @@ func receive_drop(item: Area2D) -> bool:
 		debugLabel.text += "Aggiunta "+ item.item_name+ " nel panino!\n"
 #		solo per testing
 		var ob = $"../../../Control/OrderBoard"
-		ob.spawn_order.emit({})
+		ob.remove_order.emit()
 		
 		
 		item.global_position = global_position

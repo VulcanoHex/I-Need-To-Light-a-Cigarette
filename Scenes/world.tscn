@@ -74,6 +74,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="OrderBoard" type="NinePatchRect" parent="Player/Kitchen/Control" unique_id=1864550557]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 5.0
 offset_top = 3.0
@@ -155,6 +156,8 @@ value = 10.0
 nine_patch_stretch = true
 texture_progress = SubResource("PlaceholderTexture2D_yf5fn")
 
+[connection signal="startSendingOrders" from="Player" to="Player" method="_on_start_sending_orders"]
+[connection signal="stopSendingOrders" from="Player" to="Player" method="_on_stop_sending_orders"]
 [connection signal="pressed" from="Player/Kitchen/Control/GoToSmokeButton" to="Player" method="_on_go_to_smoke_button_pressed"]
 [connection signal="its_over" from="Player/SmokeRoom" to="Player/SmokeRoom/Cigarette/areaCigarette" method="_on_smoke_room_its_over"]
 [connection signal="pressed" from="Player/SmokeRoom/GoToKitchen" to="Player" method="_on_go_to_kitchen_pressed"]
