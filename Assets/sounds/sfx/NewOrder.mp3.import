@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/NewOrder.mp3-d077ebb0872ee64a2bc9278c1fa4008c
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4
