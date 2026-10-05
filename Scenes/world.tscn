@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://b7jff7tghyfn6" path="res://Scenes/order.tscn" id="5_fo5ed"]
 [ext_resource type="Script" uid="uid://bn26m2q0fdm10" path="res://Scripts/SmokeRoom.gd" id="7_o06y3"]
 [ext_resource type="Script" uid="uid://b8s0rcdf2u4ul" path="res://Scripts/area_cigarette.gd" id="8_5v1tr"]
-[ext_resource type="Script" uid="uid://ml8dh0ud3w41" path="res://Scripts/area_lighter.gd" id="8_k7acu"]
 [ext_resource type="Script" uid="uid://dibbwowt047bx" path="res://Scripts/match.gd" id="10_0fj1v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1wt5t"]
@@ -21,9 +20,6 @@ size = Vector2(100, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
 size = Vector2(130, 136)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
-size = Vector2(127, 124)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
 radius = 31.06445
@@ -144,21 +140,6 @@ texture = ExtResource("1_a02cp")
 position = Vector2(936, 541)
 shape = SubResource("RectangleShape2D_yf5fn")
 
-[node name="Lighter" type="Node2D" parent="Player/SmokeRoom" unique_id=522539455]
-visible = false
-position = Vector2(98, 114)
-
-[node name="areaLighter" type="Area2D" parent="Player/SmokeRoom/Lighter" unique_id=497684855]
-script = ExtResource("8_k7acu")
-
-[node name="textLighter" type="Sprite2D" parent="Player/SmokeRoom/Lighter/areaLighter" unique_id=1194049011]
-position = Vector2(1278, 645)
-texture = ExtResource("1_a02cp")
-
-[node name="CollisionLighter" type="CollisionShape2D" parent="Player/SmokeRoom/Lighter/areaLighter" unique_id=490350990]
-position = Vector2(1282, 646)
-shape = SubResource("RectangleShape2D_g4v7s")
-
 [node name="Match" type="Node2D" parent="Player/SmokeRoom" unique_id=1661050001]
 position = Vector2(285, -2)
 metadata/_edit_group_ = true
@@ -173,7 +154,7 @@ scale = Vector2(0.25, 2.8125)
 texture = ExtResource("1_a02cp")
 
 [node name="CollisionCapocchia" type="CollisionShape2D" parent="Player/SmokeRoom/Match/AreaMatch" unique_id=243399193]
-position = Vector2(861, 622)
+position = Vector2(861, 631.87)
 shape = SubResource("CircleShape2D_g4v7s")
 
 [node name="CollisionMatch" type="CollisionShape2D" parent="Player/SmokeRoom/Match/AreaMatch" unique_id=1368542291]
@@ -181,17 +162,17 @@ position = Vector2(992.0571, 792.0783)
 rotation = -0.6440265
 shape = SubResource("RectangleShape2D_57qmd")
 
-[node name="RedSide" type="Node2D" parent="Player/SmokeRoom" unique_id=672196319]
+[node name="Strip" type="Node2D" parent="Player/SmokeRoom" unique_id=672196319]
 metadata/_edit_group_ = true
 
-[node name="AreaRedSide" type="Area2D" parent="Player/SmokeRoom/RedSide" unique_id=203566546]
+[node name="AreaStrip" type="Area2D" parent="Player/SmokeRoom/Strip" unique_id=203566546]
 
-[node name="SpriteRedSide" type="Sprite2D" parent="Player/SmokeRoom/RedSide/AreaRedSide" unique_id=1414343000]
+[node name="SpriteStrip" type="Sprite2D" parent="Player/SmokeRoom/Strip/AreaStrip" unique_id=1414343000]
 position = Vector2(917, 416)
 scale = Vector2(986.5, 140.25)
 texture = SubResource("PlaceholderTexture2D_57qmd")
 
-[node name="CollisionRedSide" type="CollisionShape2D" parent="Player/SmokeRoom/RedSide/AreaRedSide" unique_id=1697223179]
+[node name="CollisionStrip" type="CollisionShape2D" parent="Player/SmokeRoom/Strip/AreaStrip" unique_id=1697223179]
 position = Vector2(918, 415.5)
 shape = SubResource("RectangleShape2D_d0u6y")
 
@@ -208,11 +189,9 @@ texture_progress = SubResource("PlaceholderTexture2D_yf5fn")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=873944172]
 unique_name_in_owner = true
-bus = &"Music"
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="." unique_id=138170603]
 unique_name_in_owner = true
-bus = &"Sound Effects"
 
 [connection signal="startSendingOrders" from="Player" to="Player" method="_on_start_sending_orders"]
 [connection signal="stopSendingOrders" from="Player" to="Player" method="_on_stop_sending_orders"]
