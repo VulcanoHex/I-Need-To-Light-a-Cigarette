@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bn26m2q0fdm10" path="res://Scripts/SmokeRoom.gd" id="7_o06y3"]
 [ext_resource type="Script" uid="uid://b8s0rcdf2u4ul" path="res://Scripts/area_cigarette.gd" id="8_5v1tr"]
 [ext_resource type="Script" uid="uid://ml8dh0ud3w41" path="res://Scripts/area_lighter.gd" id="8_k7acu"]
+[ext_resource type="Script" uid="uid://dibbwowt047bx" path="res://Scripts/match.gd" id="10_0fj1v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1wt5t"]
 size = Vector2(128, 128)
@@ -24,6 +25,17 @@ size = Vector2(130, 136)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(127, 124)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
+radius = 31.06445
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57qmd"]
+size = Vector2(44.029892, 288.58942)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_57qmd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0u6y"]
+size = Vector2(988, 139)
+
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yf5fn"]
 
 [node name="World" type="Node2D" unique_id=947603728]
@@ -33,6 +45,7 @@ script = ExtResource("1_5ukr8")
 
 [node name="Kitchen" type="Node2D" parent="Player" unique_id=705213045]
 unique_name_in_owner = true
+visible = false
 
 [node name="FoodTable" type="Node2D" parent="Player/Kitchen" unique_id=1024811331]
 
@@ -95,7 +108,6 @@ text = "Weezing"
 
 [node name="SmokeRoom" type="Node2D" parent="Player" unique_id=1828866032]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("7_o06y3")
 
 [node name="GoToKitchen" type="Button" parent="Player/SmokeRoom" unique_id=1559058605]
@@ -115,6 +127,8 @@ nine_patch_stretch = true
 texture_progress = SubResource("PlaceholderTexture2D_g4v7s")
 
 [node name="Cigarette" type="Node2D" parent="Player/SmokeRoom" unique_id=619295634]
+visible = false
+position = Vector2(-799, -113)
 metadata/_edit_group_ = true
 
 [node name="areaCigarette" type="Area2D" parent="Player/SmokeRoom/Cigarette" unique_id=1892124314]
@@ -130,8 +144,8 @@ position = Vector2(936, 541)
 shape = SubResource("RectangleShape2D_yf5fn")
 
 [node name="Lighter" type="Node2D" parent="Player/SmokeRoom" unique_id=522539455]
+visible = false
 position = Vector2(98, 114)
-metadata/_edit_group_ = true
 
 [node name="areaLighter" type="Area2D" parent="Player/SmokeRoom/Lighter" unique_id=497684855]
 script = ExtResource("8_k7acu")
@@ -143,6 +157,42 @@ texture = ExtResource("1_a02cp")
 [node name="CollisionLighter" type="CollisionShape2D" parent="Player/SmokeRoom/Lighter/areaLighter" unique_id=490350990]
 position = Vector2(1282, 646)
 shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="Match" type="Node2D" parent="Player/SmokeRoom" unique_id=1661050001]
+position = Vector2(285, -2)
+metadata/_edit_group_ = true
+
+[node name="AreaMatch" type="Area2D" parent="Player/SmokeRoom/Match" unique_id=2112664049]
+script = ExtResource("10_0fj1v")
+
+[node name="SpriteMatch" type="Sprite2D" parent="Player/SmokeRoom/Match/AreaMatch" unique_id=772126358]
+position = Vector2(970, 765)
+rotation = -0.6440265
+scale = Vector2(0.25, 2.8125)
+texture = ExtResource("1_a02cp")
+
+[node name="CollisionCapocchia" type="CollisionShape2D" parent="Player/SmokeRoom/Match/AreaMatch" unique_id=243399193]
+position = Vector2(861, 622)
+shape = SubResource("CircleShape2D_g4v7s")
+
+[node name="CollisionMatch" type="CollisionShape2D" parent="Player/SmokeRoom/Match/AreaMatch" unique_id=1368542291]
+position = Vector2(992.0571, 792.0783)
+rotation = -0.6440265
+shape = SubResource("RectangleShape2D_57qmd")
+
+[node name="RedSide" type="Node2D" parent="Player/SmokeRoom" unique_id=672196319]
+metadata/_edit_group_ = true
+
+[node name="AreaRedSide" type="Area2D" parent="Player/SmokeRoom/RedSide" unique_id=203566546]
+
+[node name="SpriteRedSide" type="Sprite2D" parent="Player/SmokeRoom/RedSide/AreaRedSide" unique_id=1414343000]
+position = Vector2(917, 416)
+scale = Vector2(986.5, 140.25)
+texture = SubResource("PlaceholderTexture2D_57qmd")
+
+[node name="CollisionRedSide" type="CollisionShape2D" parent="Player/SmokeRoom/RedSide/AreaRedSide" unique_id=1697223179]
+position = Vector2(918, 415.5)
+shape = SubResource("RectangleShape2D_d0u6y")
 
 [node name="NicotineBar" type="TextureProgressBar" parent="Player" unique_id=704873316]
 modulate = Color(1, 1, 0.25882354, 1)

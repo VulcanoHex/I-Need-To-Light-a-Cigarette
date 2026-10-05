@@ -14,24 +14,24 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if on_fire:
-		if time_of < time_to_light:
-			time_of += delta
-		else:
-			lighted = true
-			on_fire = false
-			print("sono accesa")
-			time_to_smoke.emit()
-	else:
-		if time_of > 0 and not lighted:
-			time_of -= delta
-		else:
-			time_of = 0.0
-	pass
+#func _process(delta: float) -> void:
+	#if on_fire:
+		#if time_of < time_to_light:
+			#time_of += delta
+		#else:
+			#lighted = true
+			#on_fire = false
+			#print("sono accesa")
+			#time_to_smoke.emit()
+	#else:
+		#if time_of > 0 and not lighted:
+			#time_of -= delta
+		#else:
+			#time_of = 0.0
+	#pass
 
 func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	print("im in")
+	print(area)
 	if not lighted:
 		on_fire = true
 	pass
