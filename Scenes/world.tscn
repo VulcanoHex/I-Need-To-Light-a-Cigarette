@@ -5,15 +5,39 @@
 [ext_resource type="Texture2D" uid="uid://dffe3c78lha1g" path="res://icon.svg" id="1_a02cp"]
 [ext_resource type="Script" uid="uid://ngulqb5jxnkq" path="res://Scripts/world.gd" id="1_ikia7"]
 [ext_resource type="Script" uid="uid://dkb6rh263gav3" path="res://Scripts/IngredientDragArea2D.gd" id="2_go701"]
+[ext_resource type="Texture2D" uid="uid://c8d3yb2rmbrwx" path="res://Assets/images/workingspace.jpg" id="3_7yui6"]
 [ext_resource type="Script" uid="uid://b0bommg7wiw43" path="res://Scripts/order_board.gd" id="4_8j60k"]
+[ext_resource type="Texture2D" uid="uid://bcc6osubnkmhf" path="res://Assets/images/dishv2.png" id="5_c5t2i"]
 [ext_resource type="PackedScene" uid="uid://b7jff7tghyfn6" path="res://Scenes/order.tscn" id="5_fo5ed"]
 [ext_resource type="Script" uid="uid://bn26m2q0fdm10" path="res://Scripts/SmokeRoom.gd" id="7_o06y3"]
+[ext_resource type="Texture2D" uid="uid://dl7euex7byunn" path="res://Assets/images/fa0a2dce-461b-4a98-a610-0e005f108dec-Photoroom.png" id="7_yq1aw"]
 [ext_resource type="Script" uid="uid://b8s0rcdf2u4ul" path="res://Scripts/area_cigarette.gd" id="8_5v1tr"]
 [ext_resource type="Script" uid="uid://ml8dh0ud3w41" path="res://Scripts/area_lighter.gd" id="8_k7acu"]
+[ext_resource type="Texture2D" uid="uid://eo5gw54tr1i" path="res://Assets/images/d31fc04b-68e1-4d7d-8ae7-093566d0ab85-Photoroom.png" id="8_pyn1s"]
+[ext_resource type="Texture2D" uid="uid://bfqv2e7qdjii0" path="res://Assets/images/c7bc5e01-4614-4ae1-ac76-f4373a4e885a-Photoroom.png" id="8_qebug"]
+[ext_resource type="Texture2D" uid="uid://dihst44lvtkiv" path="res://Assets/images/67c38807-3457-4143-aa14-3b1b288d3b71-Photoroom.png" id="9_no8kt"]
 [ext_resource type="Script" uid="uid://dibbwowt047bx" path="res://Scripts/match.gd" id="10_0fj1v"]
+[ext_resource type="Texture2D" uid="uid://osk8n2fjr3ey" path="res://Assets/images/cff62b82-54ad-459f-a0e1-74bd3515d832-Photoroom.png" id="10_o2rbt"]
+[ext_resource type="Texture2D" uid="uid://b4a4vbmun2v7v" path="res://Assets/images/35aa6550-718d-48ee-9c16-55899250783d-Photoroom.png" id="10_xbk3s"]
+[ext_resource type="Texture2D" uid="uid://465cstrqjcn1" path="res://Assets/images/85c81d7b-2d1f-490e-b010-ecc5bdbb2051.png" id="11_i4fjy"]
+[ext_resource type="Texture2D" uid="uid://cjjcw81cbguhj" path="res://Assets/images/f0ddf1a0-aea0-40cc-9cbd-f80b722bd884-Photoroom.png" id="12_1vso6"]
+[ext_resource type="Texture2D" uid="uid://ckyt0cs5sipki" path="res://Assets/images/57f4d7b2-2d7a-4203-a7f4-78b2b676bd67.png" id="12_pt3ps"]
+[ext_resource type="Texture2D" uid="uid://db4s6xw8ajlq3" path="res://Assets/images/742f4016-7330-48c6-b490-fbda17b97ebd-Photoroom.png" id="12_pyn1s"]
+[ext_resource type="Texture2D" uid="uid://1i2iilgkbqda" path="res://Assets/images/bd4c4d41-959c-4b36-bfe6-80035b05aa8a.png" id="13_hmc15"]
+[ext_resource type="Texture2D" uid="uid://va7f023hawvk" path="res://Assets/images/287484e4-2159-4bab-b7f9-ba9cb71f1b22-Photoroom.png" id="14_3ua1v"]
+[ext_resource type="Texture2D" uid="uid://cylbgr3ko8iqd" path="res://Assets/images/a3e02c66-3d8e-40f5-b889-d7ff81e779f1.png" id="14_dt0r1"]
+[ext_resource type="Texture2D" uid="uid://d3rlgxpwj4cw5" path="res://Assets/images/faf36078-4f3f-4468-8111-1ddb28f2c2d6-Photoroom.png" id="14_i4fjy"]
+[ext_resource type="Texture2D" uid="uid://dr7uc3xb5fo7y" path="res://Assets/images/c8c7264c-0fde-4ff6-8c73-404634a5c677-Photoroom.png" id="16_pt3ps"]
+[ext_resource type="Texture2D" uid="uid://c8thdrpwmo8h2" path="res://Assets/images/b8eefd64-e92a-4d27-9eec-84ca1ad2d432-Photoroom.png" id="18_hmc15"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1wt5t"]
-size = Vector2(128, 128)
+size = Vector2(325, 272)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oqjqy"]
+size = Vector2(85, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c5t2i"]
+size = Vector2(250, 313)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1wt5t"]
 size = Vector2(100, 100)
@@ -47,40 +71,208 @@ script = ExtResource("1_5ukr8")
 
 [node name="Kitchen" type="Node2D" parent="Player" unique_id=705213045]
 unique_name_in_owner = true
-visible = false
 
 [node name="FoodTable" type="Node2D" parent="Player/Kitchen" unique_id=1024811331]
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable" unique_id=1801015234]
+position = Vector2(1178.4999, 539.5)
+scale = Vector2(1.0835754, 1.4049479)
+texture = ExtResource("3_7yui6")
 
 [node name="PaninoAssembly" type="Node2D" parent="Player/Kitchen/FoodTable" unique_id=40691010]
 position = Vector2(925, 885)
 
 [node name="Debug text" type="Label" parent="Player/Kitchen/FoodTable/PaninoAssembly" unique_id=448139689]
-offset_left = 88.0
-offset_top = 39.0
-offset_right = 128.0
-offset_bottom = 62.0
+offset_left = 391.0
+offset_top = -154.0
+offset_right = 431.0
+offset_bottom = -131.0
 
-[node name="Area2D" type="Area2D" parent="Player/Kitchen/FoodTable/PaninoAssembly" unique_id=2062199293 node_paths=PackedStringArray("debugLabel")]
+[node name="Area2D" type="Area2D" parent="Player/Kitchen/FoodTable/PaninoAssembly" unique_id=2062199293]
+position = Vector2(147, 80)
 script = ExtResource("1_5a7ea")
-debugLabel = NodePath("../Debug text")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/PaninoAssembly/Area2D" unique_id=2107570434]
-texture = ExtResource("1_a02cp")
+position = Vector2(0.061601013, 23.33673)
+rotation = -0.0026403076
+scale = Vector2(0.3686523, 0.31623667)
+texture = ExtResource("5_c5t2i")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Kitchen/FoodTable/PaninoAssembly/Area2D" unique_id=1214919672]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player/Kitchen/FoodTable/PaninoAssembly/Area2D" unique_id=1464190118]
+position = Vector2(0, -31)
 shape = SubResource("RectangleShape2D_1wt5t")
 
-[node name="Ingredient1" type="Node2D" parent="Player/Kitchen/FoodTable" unique_id=220065275]
-position = Vector2(558, 508)
+[node name="Sborra" type="Node2D" parent="Player/Kitchen/FoodTable" unique_id=220065275]
+position = Vector2(1092, 108)
+metadata/_edit_group_ = true
 
-[node name="Area2D2" type="Area2D" parent="Player/Kitchen/FoodTable/Ingredient1" unique_id=941254381]
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/Sborra" unique_id=1673683276]
+position = Vector2(-3.75, -3.7500153)
+scale = Vector2(0.2983398, 0.2983398)
+texture = ExtResource("7_yq1aw")
+
+[node name="Area2D2" type="Area2D" parent="Player/Kitchen/FoodTable/Sborra" unique_id=941254381]
 script = ExtResource("2_go701")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/Ingredient1/Area2D2" unique_id=468126409]
-texture = ExtResource("1_a02cp")
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/Sborra/Area2D2" unique_id=468126409]
+visible = false
+position = Vector2(-3.750019, -3.750019)
+scale = Vector2(0.2983398, 0.2983398)
+texture = ExtResource("8_qebug")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Kitchen/FoodTable/Ingredient1/Area2D2" unique_id=708780841]
-shape = SubResource("RectangleShape2D_1wt5t")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Kitchen/FoodTable/Sborra/Area2D2" unique_id=708780841]
+position = Vector2(-4.5, -14)
+shape = SubResource("RectangleShape2D_oqjqy")
+
+[node name="Ketchup" type="Node2D" parent="Player/Kitchen/FoodTable" unique_id=1027807128]
+position = Vector2(1258, 112)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/Ketchup" unique_id=578521830]
+position = Vector2(-3.75, -3.7500153)
+scale = Vector2(0.2983398, 0.2983398)
+texture = ExtResource("8_pyn1s")
+
+[node name="Area2D2" type="Area2D" parent="Player/Kitchen/FoodTable/Ketchup" unique_id=723311858]
+script = ExtResource("2_go701")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/Ketchup/Area2D2" unique_id=1316571584]
+visible = false
+position = Vector2(-3.750019, -3.750019)
+scale = Vector2(0.2983398, 0.2983398)
+texture = ExtResource("10_o2rbt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Kitchen/FoodTable/Ketchup/Area2D2" unique_id=1513176028]
+position = Vector2(-4.5, -14)
+shape = SubResource("RectangleShape2D_oqjqy")
+
+[node name="Senape" type="Node2D" parent="Player/Kitchen/FoodTable" unique_id=1896068361]
+position = Vector2(1443, 117)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/Senape" unique_id=1676140828]
+position = Vector2(-3.75, -3.7500153)
+scale = Vector2(0.2983398, 0.2983398)
+texture = ExtResource("9_no8kt")
+
+[node name="Area2D2" type="Area2D" parent="Player/Kitchen/FoodTable/Senape" unique_id=1676677853]
+script = ExtResource("2_go701")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/Senape/Area2D2" unique_id=924612314]
+visible = false
+position = Vector2(-3.750019, -3.750019)
+scale = Vector2(0.2983398, 0.2983398)
+texture = ExtResource("12_1vso6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Kitchen/FoodTable/Senape/Area2D2" unique_id=1523644386]
+position = Vector2(-4.5, -14)
+shape = SubResource("RectangleShape2D_oqjqy")
+
+[node name="BurgerSauce" type="Node2D" parent="Player/Kitchen/FoodTable" unique_id=1199178274]
+position = Vector2(1703, 118)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/BurgerSauce" unique_id=1289515429]
+position = Vector2(-4, 35.000015)
+scale = Vector2(0.39306644, 0.39306644)
+texture = ExtResource("10_xbk3s")
+
+[node name="Area2D2" type="Area2D" parent="Player/Kitchen/FoodTable/BurgerSauce" unique_id=2135957494]
+script = ExtResource("2_go701")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/BurgerSauce/Area2D2" unique_id=546326349]
+visible = false
+position = Vector2(-3.9999676, 1.9073486e-06)
+rotation = 0.0129824
+scale = Vector2(0.30387703, 0.30387703)
+texture = ExtResource("14_3ua1v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Kitchen/FoodTable/BurgerSauce/Area2D2" unique_id=1593892673]
+position = Vector2(-4.5, -14)
+shape = SubResource("RectangleShape2D_oqjqy")
+
+[node name="Erba" type="Node2D" parent="Player/Kitchen/FoodTable" unique_id=1059516501]
+position = Vector2(925, 524)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/Erba" unique_id=1797906701]
+texture = ExtResource("11_i4fjy")
+
+[node name="Area2D2" type="Area2D" parent="Player/Kitchen/FoodTable/Erba" unique_id=2099178434]
+script = ExtResource("2_go701")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/Erba/Area2D2" unique_id=2143953982]
+visible = false
+position = Vector2(-2, -48)
+scale = Vector2(0.4501953, 0.4501953)
+texture = ExtResource("12_pyn1s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Kitchen/FoodTable/Erba/Area2D2" unique_id=1158399016]
+position = Vector2(-1, -50.5)
+shape = SubResource("RectangleShape2D_c5t2i")
+
+[node name="Pomodori" type="Node2D" parent="Player/Kitchen/FoodTable" unique_id=255691123]
+position = Vector2(1195, 524)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/Pomodori" unique_id=1999380981]
+position = Vector2(-14, 14)
+texture = ExtResource("12_pt3ps")
+
+[node name="Area2D2" type="Area2D" parent="Player/Kitchen/FoodTable/Pomodori" unique_id=980921386]
+script = ExtResource("2_go701")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/Pomodori/Area2D2" unique_id=1224018730]
+visible = false
+position = Vector2(-1, -50)
+scale = Vector2(0.40527344, 0.40527344)
+texture = ExtResource("14_i4fjy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Kitchen/FoodTable/Pomodori/Area2D2" unique_id=289439102]
+position = Vector2(-1, -50.5)
+shape = SubResource("RectangleShape2D_c5t2i")
+
+[node name="Pickles" type="Node2D" parent="Player/Kitchen/FoodTable" unique_id=792717781]
+position = Vector2(1469, 524)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/Pickles" unique_id=466094976]
+position = Vector2(-5, -18)
+texture = ExtResource("13_hmc15")
+
+[node name="Area2D2" type="Area2D" parent="Player/Kitchen/FoodTable/Pickles" unique_id=458479671]
+script = ExtResource("2_go701")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/Pickles/Area2D2" unique_id=1100747305]
+visible = false
+position = Vector2(-0.9999695, -49.99994)
+scale = Vector2(0.34570313, 0.34570313)
+texture = ExtResource("16_pt3ps")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Kitchen/FoodTable/Pickles/Area2D2" unique_id=338811726]
+position = Vector2(-1, -50.5)
+shape = SubResource("RectangleShape2D_c5t2i")
+
+[node name="Cipolla" type="Node2D" parent="Player/Kitchen/FoodTable" unique_id=1383720061]
+position = Vector2(1743, 524)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/Cipolla" unique_id=1945613161]
+position = Vector2(0, -11)
+texture = ExtResource("14_dt0r1")
+
+[node name="Area2D2" type="Area2D" parent="Player/Kitchen/FoodTable/Cipolla" unique_id=1032302185]
+script = ExtResource("2_go701")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/Cipolla/Area2D2" unique_id=611642800]
+visible = false
+position = Vector2(-1.0000305, -50.00006)
+scale = Vector2(0.24902344, 0.24902344)
+texture = ExtResource("18_hmc15")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Kitchen/FoodTable/Cipolla/Area2D2" unique_id=111790047]
+position = Vector2(-1, -50.5)
+shape = SubResource("RectangleShape2D_c5t2i")
 
 [node name="Control" type="Control" parent="Player/Kitchen" unique_id=1813313263]
 layout_mode = 3
@@ -93,7 +285,7 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_left = 5.0
 offset_top = 3.0
-offset_right = 293.0
+offset_right = 428.0
 offset_bottom = 1078.0
 texture = SubResource("PlaceholderTexture2D_1wt5t")
 script = ExtResource("4_8j60k")
@@ -111,6 +303,7 @@ text = "Weezing"
 
 [node name="SmokeRoom" type="Node2D" parent="Player" unique_id=1828866032]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("7_o06y3")
 
 [node name="GoToKitchen" type="Button" parent="Player/SmokeRoom" unique_id=1559058605]
