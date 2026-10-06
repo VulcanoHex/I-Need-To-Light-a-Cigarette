@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b76uqo0bpik4" path="res://Scripts/AssemblyCollision.gd" id="1_5a7ea"]
 [ext_resource type="Script" uid="uid://bnf473dl8kfj6" path="res://Scripts/player.gd" id="1_5ukr8"]
 [ext_resource type="Texture2D" uid="uid://dffe3c78lha1g" path="res://icon.svg" id="1_a02cp"]
+[ext_resource type="Script" uid="uid://ngulqb5jxnkq" path="res://Scripts/world.gd" id="1_ikia7"]
 [ext_resource type="Script" uid="uid://dkb6rh263gav3" path="res://Scripts/IngredientDragArea2D.gd" id="2_go701"]
 [ext_resource type="Script" uid="uid://b0bommg7wiw43" path="res://Scripts/order_board.gd" id="4_8j60k"]
 [ext_resource type="PackedScene" uid="uid://b7jff7tghyfn6" path="res://Scenes/order.tscn" id="5_fo5ed"]
@@ -39,6 +40,7 @@ size = Vector2(988, 139)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yf5fn"]
 
 [node name="World" type="Node2D" unique_id=947603728]
+script = ExtResource("1_ikia7")
 
 [node name="Player" type="Node2D" parent="." unique_id=365032139]
 script = ExtResource("1_5ukr8")
