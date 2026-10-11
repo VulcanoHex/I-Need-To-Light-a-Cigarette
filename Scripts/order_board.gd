@@ -36,9 +36,10 @@ func _on_spawn_order(order_details: Dictionary) -> void:
 
 	if new_order.has_method("setup_order"):
 		new_order.setup_order(order_details)
-	
-	sfxPlayer.stream = NEW_ORDER_SFX
-	sfxPlayer.play()
+		
+	if(is_visible_in_tree()):
+		sfxPlayer.stream = NEW_ORDER_SFX
+		sfxPlayer.play()
 	add_child(new_order)
 	
 	# Set initial size width to match board padding
