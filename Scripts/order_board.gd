@@ -10,14 +10,14 @@ const NEW_ORDER_SFX = preload("res://Assets/sounds/sfx/NewOrder.mp3")
 
 # --- DATABASE DEGLI 8 INGREDIENTI ---
 const INGREDIENTS = {
-	"insalata": {"name": "Insalata", "icon": "res://Assets/images/4ab9f1bb-725c-4edd-b880-3cf58599dafd-Photoroom.png"},
-	"pomodoro": {"name": "Pomodoro", "icon": "res://Assets/images/57f4d7b2-2d7a-4203-a7f4-78b2b676bd67.png"},
-	"pickles": {"name": "Pickles", "icon": "res://Assets/images/1i2iilgkbqda.png"},
-	"cipolla": {"name": "Cipolla", "icon": "res://Assets/images/a3e02c66-3d8e-40f5-b889-d7ff81e779f1.png"},
-	"mayo": {"name": "Mayo", "icon": "res://Assets/images/d31fc04b-68e1-4d7d-8ae7-093566d0ab85-Photoroom.png"},
+	"insalata": {"name": "Lettuce", "icon": "res://Assets/images/742f4016-7330-48c6-b490-fbda17b97ebd-Photoroom.png"},
+	"pomodoro": {"name": "Tomatoes", "icon": "res://Assets/images/faf36078-4f3f-4468-8111-1ddb28f2c2d6-Photoroom.png"},
+	"pickles": {"name": "Pickles", "icon": "res://Assets/images/bab89e96-f44d-41ea-adca-1f38e306b9e7-Photoroom.png"},
+	"cipolla": {"name": "Onions", "icon": "res://Assets/images/5928c274-7ee5-44b7-9a48-27ffc921c476-Photoroom.png"},
+	"mayo": {"name": "Mayo", "icon": "res://Assets/images/c7bc5e01-4614-4ae1-ac76-f4373a4e885a-Photoroom.png"},
 	"ketchup": {"name": "Ketchup", "icon": "res://Assets/images/cff62b82-54ad-459f-a0e1-74bd3515d832-Photoroom.png"},
-	"senape": {"name": "Senape", "icon": "res://Assets/images/67c38807-3457-4143-aa14-3b1b288d3b71-Photoroom.png"},
-	"burger_sauce": {"name": "Burger Sauce", "icon": "res://Assets/images/35aa6550-718d-48ee-9c16-55899250783d-Photoroom.png"}
+	"senape": {"name": "Senape", "icon": "res://Assets/images/f0ddf1a0-aea0-40cc-9cbd-f80b722bd884-Photoroom.png"},
+	"burger_sauce": {"name": "Burger Sauce", "icon": "res://Assets/images/287484e4-2159-4bab-b7f9-ba9cb71f1b22-Photoroom.png"}
 }
 
 signal spawn_order(order_details: Dictionary)
@@ -34,8 +34,8 @@ func generate_random_order() -> Dictionary:
 	var keys = INGREDIENTS.keys()
 	keys.shuffle()
 	
-	var num_items = randi_range(2, 4) # Sceglie da 2 a 4 ingredienti casuali
-	var order_text = "[b]ORDINE:[/b]\n"
+	var num_items = randi_range(2, 8) # Sceglie da 2 a 4 ingredienti casuali
+	var order_text = "[b]ORDER:[/b]\n"
 	var order_data_array = []
 	
 	for i in range(num_items):
@@ -60,7 +60,7 @@ func _on_spawn_order(order_details: Dictionary) -> void:
 		return
 	add_child(new_order)
 
-	new_order.size.x = size.x - 20
+	new_order.size.x = size.x
 	order_details = generate_random_order()
 	if new_order.has_method("setup_order"):
 		new_order.setup_order(order_details)
@@ -104,18 +104,16 @@ func _on_remove_order() -> void:
 		#current_y += order.size.y + order_spacing
 		
 func _animate_board_layout() -> void:
-	await get_tree().process_frame
-	
 	var tween = create_tween().set_parallel(true)
 	tween.set_trans(Tween.TRANS_QUAD)
 	tween.set_ease(Tween.EASE_OUT)
 
-	var current_y = 10.0
+	var current_y = 10.0 # Margine dall'alto della bacheca
 	for i in range(active_orders.size()):
 		var order = active_orders[i]
 		
-		# Muove il biglietto alla posizione Y calcolata
+		# Posiziona l'ordine verticalmente in sequenza
 		tween.tween_property(order, "position:y", current_y, 0.35)
 		
-		# Aggiunge l'altezza reale del biglietto corrente + lo spazio tra un ordine e l'altro
-		current_y += order.size.y + order_spacing
+		# Avanza la Y della dimensione reale del biglietto corrente più un piccolo spazio costante (es. 15 pixel)
+		current_y += order.size.y + 15
