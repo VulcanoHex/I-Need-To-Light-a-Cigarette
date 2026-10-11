@@ -3,7 +3,7 @@ class_name OrderBoard
 
 @onready var sfxPlayer:AudioStreamPlayer = %SFXPlayer
 const NEW_ORDER_SFX = preload("res://Assets/sounds/sfx/NewOrder.mp3")
-
+signal neword
 @export var order_scene: PackedScene
 @export var order_spacing: float = 0.0
 @export var max_orders: int = 5
@@ -73,7 +73,7 @@ func _on_spawn_order(order_details: Dictionary) -> void:
 	var start_y = size.y + 100
 	new_order.position = Vector2(10.0, start_y)
 	active_orders.push_back(new_order)
-
+	neword.emit(order_details)
 	_animate_board_layout()
 
 func _on_remove_order() -> void:

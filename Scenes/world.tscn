@@ -503,6 +503,8 @@ bus = &"Sound Effects"
 
 [connection signal="startSendingOrders" from="Player" to="Player" method="_on_start_sending_orders"]
 [connection signal="stopSendingOrders" from="Player" to="Player" method="_on_stop_sending_orders"]
+[connection signal="pressed" from="Player/Kitchen/FoodTable/PaninoAssembly/SentOrder" to="Player/Kitchen/FoodTable/PaninoAssembly/Area2D" method="send_order"]
+[connection signal="neword" from="Player/Kitchen/Control/OrderBoard" to="Player/Kitchen/FoodTable/PaninoAssembly/Area2D" method="_on_order_board_neword"]
 [connection signal="pressed" from="Player/Kitchen/Control/GoToSmokeButton" to="Player" method="_on_go_to_smoke_button_pressed"]
 [connection signal="its_over" from="Player/SmokeRoom" to="Player/SmokeRoom/Cigarette/areaCigarette" method="_on_smoke_room_its_over"]
 [connection signal="pressed" from="Player/SmokeRoom/GoToKitchen" to="Player/SmokeRoom" method="_on_go_to_kitchen_pressed"]
