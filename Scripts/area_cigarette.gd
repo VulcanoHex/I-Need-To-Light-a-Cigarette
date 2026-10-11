@@ -2,7 +2,13 @@ extends Area2D
 
 var lighted = false
 var on_fire = false
+var match_state = false
 var time_of = 0.0
+
+@export var cig_texture: Texture2D
+@export var cig_lighted_texture: Texture2D
+
+@onready var splite_cig: Sprite2D = $textCig
 
 signal time_to_smoke
 
@@ -13,22 +19,22 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-	#if on_fire:
-		#if time_of < time_to_light:
-			#time_of += delta
-		#else:
-			#lighted = true
-			#on_fire = false
-			#print("sono accesa")
-			#time_to_smoke.emit()
-	#else:
-		#if time_of > 0 and not lighted:
-			#time_of -= delta
-		#else:
-			#time_of = 0.0
-	#pass
+ #Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if on_fire and match_state:
+		if time_of < time_to_light:
+			time_of += delta
+		else:
+			lighted = true
+			splite_cig.texture = cig_lighted_texture
+			on_fire = false
+			print("sono accesa")
+	else:
+		if time_of > 0 and not lighted:
+			time_of -= delta
+		else:
+			time_of = 0.0
+	pass
 
 func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	print(area)
@@ -42,6 +48,10 @@ func _on_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, l
 		on_fire = false
 	pass
 
-func _on_smoke_room_its_over() -> void:
-	lighted = false
-	pass
+func _on_area_match_im_fine() -> void:
+	match_state = true
+	pass # Replace with function body.
+
+func _on_area_match_skill_issue() -> void:
+	match_state = false
+	pass # Replace with function body.
