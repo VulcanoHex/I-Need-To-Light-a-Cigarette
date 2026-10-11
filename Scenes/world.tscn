@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://b0bommg7wiw43" path="res://Scripts/order_board.gd" id="4_8j60k"]
 [ext_resource type="Texture2D" uid="uid://bcc6osubnkmhf" path="res://Assets/images/dishv2.png" id="5_c5t2i"]
 [ext_resource type="PackedScene" uid="uid://b7jff7tghyfn6" path="res://Scenes/order.tscn" id="5_fo5ed"]
+[ext_resource type="Texture2D" uid="uid://b0co1md42pp8f" path="res://Assets/images/Gemini_Generated_Image_mowr8ymowr8ymowr.png" id="6_04jkj"]
 [ext_resource type="Script" uid="uid://bn26m2q0fdm10" path="res://Scripts/SmokeRoom.gd" id="7_o06y3"]
 [ext_resource type="Texture2D" uid="uid://dl7euex7byunn" path="res://Assets/images/fa0a2dce-461b-4a98-a610-0e005f108dec-Photoroom.png" id="7_yq1aw"]
 [ext_resource type="Script" uid="uid://b8s0rcdf2u4ul" path="res://Scripts/area_cigarette.gd" id="8_5v1tr"]
@@ -85,8 +86,9 @@ offset_right = 431.0
 offset_bottom = -131.0
 
 [node name="Area2D" type="Area2D" parent="Player/Kitchen/FoodTable/PaninoAssembly" unique_id=2062199293]
-position = Vector2(147, 80)
+position = Vector2(318, 63)
 script = ExtResource("1_5a7ea")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/PaninoAssembly/Area2D" unique_id=2107570434]
 position = Vector2(0.061601013, 23.33673)
@@ -97,6 +99,36 @@ texture = ExtResource("5_c5t2i")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Player/Kitchen/FoodTable/PaninoAssembly/Area2D" unique_id=1464190118]
 position = Vector2(0, -31)
 shape = SubResource("RectangleShape2D_1wt5t")
+
+[node name="SentOrder" type="Button" parent="Player/Kitchen/FoodTable/PaninoAssembly" unique_id=543727063]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -151.0
+offset_top = -2.0
+offset_right = 10.0
+offset_bottom = 151.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/PaninoAssembly/SentOrder" unique_id=307838129]
+position = Vector2(81.00003, 77.00001)
+scale = Vector2(0.4398585, 0.4398585)
+texture = ExtResource("6_04jkj")
+
+[node name="TextEdit" type="TextEdit" parent="Player/Kitchen/FoodTable/PaninoAssembly/SentOrder" unique_id=1152545812]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 17.0
+offset_top = 59.0
+offset_right = 160.0
+offset_bottom = 130.0
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("19_axeuq")
+theme_override_font_sizes/font_size = 25
+text = "Sent order
+ "
+selecting_enabled = false
+middle_mouse_paste_enabled = false
+empty_selection_clipboard_enabled = false
+tab_input_mode = false
+virtual_keyboard_enabled = false
 
 [node name="Sborra" type="Node2D" parent="Player/Kitchen/FoodTable" unique_id=220065275]
 position = Vector2(1092, 108)
@@ -285,7 +317,6 @@ offset_right = 437.0
 offset_bottom = 1078.0
 script = ExtResource("4_8j60k")
 order_scene = ExtResource("5_fo5ed")
-order_height = 150.0
 order_spacing = 64.0
 
 [node name="SpriteOrderBoard" type="Sprite2D" parent="Player/Kitchen/Control/OrderBoard" unique_id=2020061581]
@@ -294,12 +325,39 @@ scale = Vector2(1.1281818, 1.5135615)
 texture = ExtResource("25_r74th")
 
 [node name="GoToSmokeButton" type="Button" parent="Player/Kitchen/Control" unique_id=567364822]
+self_modulate = Color(1, 1, 1, 0)
+top_level = true
 layout_mode = 0
-offset_left = 1728.0
-offset_top = 859.0
-offset_right = 1806.0
-offset_bottom = 946.17645
+offset_left = 1512.0
+offset_top = 883.0
+offset_right = 1666.0
+offset_bottom = 1050.0
+theme_override_fonts/font = ExtResource("19_axeuq")
+theme_override_font_sizes/font_size = 16
 text = "Weezing"
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/Control/GoToSmokeButton" unique_id=1692716435]
+position = Vector2(73.00003, 81.00001)
+scale = Vector2(0.4398585, 0.4398585)
+texture = ExtResource("6_04jkj")
+
+[node name="TextEdit" type="TextEdit" parent="Player/Kitchen/Control/GoToSmokeButton" unique_id=436909415]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 12.0
+offset_top = 63.0
+offset_right = 155.0
+offset_bottom = 109.0
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("19_axeuq")
+theme_override_font_sizes/font_size = 25
+text = "Light a cig"
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
+empty_selection_clipboard_enabled = false
+virtual_keyboard_enabled = false
 
 [node name="SmokeRoom" type="Node2D" parent="Player" unique_id=1371364726]
 unique_name_in_owner = true
