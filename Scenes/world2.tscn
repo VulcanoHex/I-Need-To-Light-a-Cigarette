@@ -1,0 +1,233 @@
+[gd_scene format=3 uid="uid://20m1d7k2owe2"]
+
+[ext_resource type="Script" uid="uid://bnf473dl8kfj6" path="res://Scripts/player.gd" id="1_nh217"]
+[ext_resource type="Script" uid="uid://b76uqo0bpik4" path="res://Scripts/AssemblyCollision.gd" id="2_gmniy"]
+[ext_resource type="Texture2D" uid="uid://dffe3c78lha1g" path="res://icon.svg" id="3_ujnfc"]
+[ext_resource type="Script" uid="uid://dkb6rh263gav3" path="res://Scripts/IngredientDragArea2D.gd" id="4_7ss1l"]
+[ext_resource type="Script" uid="uid://b0bommg7wiw43" path="res://Scripts/order_board.gd" id="5_8o4fe"]
+[ext_resource type="PackedScene" uid="uid://b7jff7tghyfn6" path="res://Scenes/order.tscn" id="6_w3a0n"]
+[ext_resource type="Script" uid="uid://bn26m2q0fdm10" path="res://Scripts/SmokeRoom.gd" id="7_dhr7l"]
+[ext_resource type="Script" uid="uid://b8s0rcdf2u4ul" path="res://Scripts/area_cigarette.gd" id="8_qrj66"]
+[ext_resource type="Texture2D" uid="uid://bcm0n21p08vkc" path="res://Assets/images/85ae6ad8-be54-4d16-8665-d2ed8fd4ad8d-Photoroom.png" id="9_acdhw"]
+[ext_resource type="Texture2D" uid="uid://cj3jloevytt8r" path="res://Assets/images/b5dd685f-4ad8-45bf-b509-a64d9d72d704-Photoroom.png" id="10_xap5r"]
+[ext_resource type="Script" uid="uid://dibbwowt047bx" path="res://Scripts/match.gd" id="11_i2ioy"]
+[ext_resource type="Texture2D" uid="uid://cv61h8ygds41p" path="res://Assets/images/eaa90b0a-7341-4095-98cf-a54e18f342b7-Photoroom.png" id="12_yey8g"]
+[ext_resource type="Texture2D" uid="uid://btixeorcsnc6b" path="res://Assets/images/4ab9f1bb-725c-4edd-b880-3cf58599dafd-Photoroom.png" id="13_kk22i"]
+[ext_resource type="Texture2D" uid="uid://d2o5ksrfnitfp" path="res://Assets/images/8d8e4946-6a4f-49e6-83cc-bab846b18da9-Photoroom.png" id="14_i1io6"]
+[ext_resource type="Texture2D" uid="uid://bmmpq8nb7h53a" path="res://Assets/images/b8a01758-6af2-4f02-9f5e-0906334dc3c8-Photoroom.png" id="15_ngg4e"]
+[ext_resource type="Texture2D" uid="uid://dnwxlvcalqhe" path="res://Assets/images/211d731f-f3ac-495e-aee3-7f9f83cfd597-Photoroom.png" id="16_na0xn"]
+[ext_resource type="Texture2D" uid="uid://dvhwguwk688sh" path="res://Assets/images/237d89f1-9644-4499-81cd-b847cbe22848-Photoroom.png" id="17_6408w"]
+[ext_resource type="Texture2D" uid="uid://dwwfyh148fker" path="res://Assets/images/164d503a-c7f2-47f9-99b6-87a349532446.jpg" id="18_1jl72"]
+[ext_resource type="FontFile" uid="uid://dlt0jaqiel4sd" path="res://Assets/font/DigitalDisco.ttf" id="19_k7b4g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wt5t"]
+size = Vector2(128, 128)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1wt5t"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
+size = Vector2(113, 108)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
+radius = 54.748856
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57qmd"]
+size = Vector2(35.070488, 421.60464)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yf5fn"]
+
+[node name="World" type="Node2D" unique_id=947603728]
+
+[node name="Player" type="Node2D" parent="." unique_id=365032139]
+script = ExtResource("1_nh217")
+
+[node name="Kitchen" type="Node2D" parent="Player" unique_id=705213045]
+unique_name_in_owner = true
+visible = false
+
+[node name="FoodTable" type="Node2D" parent="Player/Kitchen" unique_id=1024811331]
+
+[node name="PaninoAssembly" type="Node2D" parent="Player/Kitchen/FoodTable" unique_id=40691010]
+position = Vector2(925, 885)
+
+[node name="Debug text" type="Label" parent="Player/Kitchen/FoodTable/PaninoAssembly" unique_id=448139689]
+offset_left = 88.0
+offset_top = 39.0
+offset_right = 128.0
+offset_bottom = 62.0
+
+[node name="Area2D" type="Area2D" parent="Player/Kitchen/FoodTable/PaninoAssembly" unique_id=2062199293 node_paths=PackedStringArray("debugLabel")]
+script = ExtResource("2_gmniy")
+debugLabel = NodePath("../Debug text")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/PaninoAssembly/Area2D" unique_id=2107570434]
+texture = ExtResource("3_ujnfc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Kitchen/FoodTable/PaninoAssembly/Area2D" unique_id=1214919672]
+shape = SubResource("RectangleShape2D_1wt5t")
+
+[node name="Ingredient1" type="Node2D" parent="Player/Kitchen/FoodTable" unique_id=220065275]
+position = Vector2(558, 508)
+
+[node name="Area2D2" type="Area2D" parent="Player/Kitchen/FoodTable/Ingredient1" unique_id=941254381]
+script = ExtResource("4_7ss1l")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Kitchen/FoodTable/Ingredient1/Area2D2" unique_id=468126409]
+texture = ExtResource("3_ujnfc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Kitchen/FoodTable/Ingredient1/Area2D2" unique_id=708780841]
+shape = SubResource("RectangleShape2D_1wt5t")
+
+[node name="Control" type="Control" parent="Player/Kitchen" unique_id=1813313263]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OrderBoard" type="NinePatchRect" parent="Player/Kitchen/Control" unique_id=1864550557]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 293.0
+offset_bottom = 1078.0
+texture = SubResource("PlaceholderTexture2D_1wt5t")
+script = ExtResource("5_8o4fe")
+order_scene = ExtResource("6_w3a0n")
+order_height = 150.0
+order_spacing = 64.0
+
+[node name="GoToSmokeButton" type="Button" parent="Player/Kitchen/Control" unique_id=567364822]
+layout_mode = 0
+offset_left = 1728.0
+offset_top = 859.0
+offset_right = 1806.0
+offset_bottom = 946.17645
+text = "Weezing"
+
+[node name="SmokeRoom" type="Node2D" parent="Player" unique_id=1828866032]
+unique_name_in_owner = true
+script = ExtResource("7_dhr7l")
+
+[node name="GoToKitchen" type="Button" parent="Player/SmokeRoom" unique_id=1559058605]
+offset_left = 1728.0
+offset_top = 859.0
+offset_right = 1806.0
+offset_bottom = 946.17645
+text = "Donna"
+
+[node name="Cigarette" type="Node2D" parent="Player/SmokeRoom" unique_id=619295634]
+position = Vector2(-753, -34)
+
+[node name="areaCigarette" type="Area2D" parent="Player/SmokeRoom/Cigarette" unique_id=1892124314]
+script = ExtResource("8_qrj66")
+cig_texture = ExtResource("9_acdhw")
+cig_lighted_texture = ExtResource("10_xap5r")
+
+[node name="textCig" type="Sprite2D" parent="Player/SmokeRoom/Cigarette/areaCigarette" unique_id=1432481001]
+position = Vector2(939, 844)
+scale = Vector2(0.67211866, 0.7804511)
+texture = ExtResource("9_acdhw")
+
+[node name="CollisionCig" type="CollisionShape2D" parent="Player/SmokeRoom/Cigarette/areaCigarette" unique_id=373203628]
+position = Vector2(938, 548)
+shape = SubResource("RectangleShape2D_yf5fn")
+
+[node name="Match" type="Node2D" parent="Player/SmokeRoom" unique_id=1661050001]
+top_level = true
+position = Vector2(719, 12)
+
+[node name="AreaMatch" type="Area2D" parent="Player/SmokeRoom/Match" unique_id=2112664049]
+script = ExtResource("11_i2ioy")
+off_match = ExtResource("12_yey8g")
+on_match = ExtResource("13_kk22i")
+broke_match = ExtResource("14_i1io6")
+consumedv1_match = ExtResource("15_ngg4e")
+consumedv2_match = ExtResource("16_na0xn")
+
+[node name="SpriteMatch" type="Sprite2D" parent="Player/SmokeRoom/Match/AreaMatch" unique_id=772126358]
+position = Vector2(995, 813.0001)
+rotation = -0.6440265
+scale = Vector2(0.5544432, 0.6455488)
+texture = ExtResource("12_yey8g")
+
+[node name="CollisionCapocchia" type="CollisionShape2D" parent="Player/SmokeRoom/Match/AreaMatch" unique_id=243399193]
+position = Vector2(867, 644.00006)
+rotation = -0.53346515
+scale = Vector2(0.6, 1)
+shape = SubResource("CircleShape2D_g4v7s")
+
+[node name="CollisionMatch" type="CollisionShape2D" parent="Player/SmokeRoom/Match/AreaMatch" unique_id=1368542291]
+position = Vector2(1023, 849.99994)
+rotation = -0.6440265
+shape = SubResource("RectangleShape2D_57qmd")
+
+[node name="Strip" type="Node2D" parent="Player/SmokeRoom" unique_id=672196319]
+metadata/_edit_group_ = true
+
+[node name="AreaStrip" type="Area2D" parent="Player/SmokeRoom/Strip" unique_id=203566546]
+metadata/_edit_group_ = true
+
+[node name="CollisionStrip" type="CollisionPolygon2D" parent="Player/SmokeRoom/Strip/AreaStrip" unique_id=265146214]
+top_level = true
+position = Vector2(866.00006, 351)
+scale = Vector2(15.72, 7.56)
+polygon = PackedVector2Array(30.661575, 4.365078, 16.666664, -6.216934, -26.844784, 13.888889, -11.323158, 25.13227)
+
+[node name="SpriteStrip" type="Sprite2D" parent="Player/SmokeRoom/Strip" unique_id=1414343000]
+position = Vector2(895.00006, 606)
+scale = Vector2(1.1942233, 0.8130728)
+texture = ExtResource("17_6408w")
+
+[node name="SmokeBackground" type="Sprite2D" parent="Player/SmokeRoom" unique_id=272844729]
+show_behind_parent = true
+position = Vector2(967, 543.00006)
+scale = Vector2(1.902098, 1.902098)
+texture = ExtResource("18_1jl72")
+
+[node name="Counter" type="RichTextLabel" parent="Player/SmokeRoom" unique_id=36110187]
+offset_left = 710.0
+offset_top = -7.0
+offset_right = 1210.0
+offset_bottom = 293.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.47843137)
+theme_override_constants/shadow_offset_x = -11
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 20
+theme_override_fonts/normal_font = ExtResource("19_k7b4g")
+theme_override_font_sizes/normal_font_size = 300
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NicotineBar" type="TextureProgressBar" parent="Player" unique_id=704873316]
+visible = false
+modulate = Color(1, 1, 0.25882354, 1)
+offset_left = 739.0
+offset_top = 17.0
+offset_right = 1236.0
+offset_bottom = 57.0
+step = 0.1
+value = 10.0
+nine_patch_stretch = true
+texture_progress = SubResource("PlaceholderTexture2D_yf5fn")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=873944172]
+unique_name_in_owner = true
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="." unique_id=138170603]
+unique_name_in_owner = true
+
+[connection signal="startSendingOrders" from="Player" to="Player" method="_on_start_sending_orders"]
+[connection signal="stopSendingOrders" from="Player" to="Player" method="_on_stop_sending_orders"]
+[connection signal="pressed" from="Player/Kitchen/Control/GoToSmokeButton" to="Player" method="_on_go_to_smoke_button_pressed"]
+[connection signal="its_over" from="Player/SmokeRoom" to="Player/SmokeRoom/Cigarette/areaCigarette" method="_on_smoke_room_its_over"]
+[connection signal="pressed" from="Player/SmokeRoom/GoToKitchen" to="Player" method="_on_go_to_kitchen_pressed"]
+[connection signal="pressed" from="Player/SmokeRoom/GoToKitchen" to="Player/SmokeRoom" method="_on_go_to_kitchen_pressed"]
+[connection signal="area_shape_entered" from="Player/SmokeRoom/Cigarette/areaCigarette" to="Player/SmokeRoom/Cigarette/areaCigarette" method="_on_area_shape_entered"]
+[connection signal="area_shape_exited" from="Player/SmokeRoom/Cigarette/areaCigarette" to="Player/SmokeRoom/Cigarette/areaCigarette" method="_on_area_shape_exited"]
+[connection signal="time_to_smoke" from="Player/SmokeRoom/Cigarette/areaCigarette" to="Player/SmokeRoom" method="_on_area_cigarette_time_to_smoke"]
+[connection signal="im_fine" from="Player/SmokeRoom/Match/AreaMatch" to="Player/SmokeRoom/Cigarette/areaCigarette" method="_on_area_match_im_fine"]
+[connection signal="skill_issue" from="Player/SmokeRoom/Match/AreaMatch" to="Player/SmokeRoom/Cigarette/areaCigarette" method="_on_area_match_skill_issue"]
