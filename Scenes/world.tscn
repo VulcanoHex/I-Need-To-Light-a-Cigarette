@@ -38,6 +38,8 @@
 [ext_resource type="Texture2D" uid="uid://c8thdrpwmo8h2" path="res://Assets/images/b8eefd64-e92a-4d27-9eec-84ca1ad2d432-Photoroom.png" id="18_hmc15"]
 [ext_resource type="FontFile" uid="uid://dlt0jaqiel4sd" path="res://Assets/font/DigitalDisco.ttf" id="19_axeuq"]
 [ext_resource type="Texture2D" uid="uid://bpuafy23mrnkv" path="res://Assets/images/Gemini_Generated_Image_vedngbvedngbvedn.png" id="25_r74th"]
+[ext_resource type="Shader" uid="uid://dlitiq6w7x4o0" path="res://Scenes/tunnel_vision.gdshader" id="39_lkcvt"]
+[ext_resource type="Script" uid="uid://d25cew1h00fyu" path="res://Scripts/color_rect.gd" id="40_atqvy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1wt5t"]
 size = Vector2(325, 272)
@@ -58,6 +60,12 @@ radius = 54.748856
 size = Vector2(35.070488, 421.60464)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yf5fn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oqjqy"]
+shader = ExtResource("39_lkcvt")
+shader_parameter/opening_radius = 2.0
+shader_parameter/smoothness = 0.3330000158175
+shader_parameter/aspect_ratio = 1.7778
 
 [node name="World" type="Node2D" unique_id=947603728]
 script = ExtResource("1_ikia7")
@@ -285,7 +293,6 @@ offset_right = 437.0
 offset_bottom = 1078.0
 script = ExtResource("4_8j60k")
 order_scene = ExtResource("5_fo5ed")
-order_height = 150.0
 order_spacing = 64.0
 
 [node name="SpriteOrderBoard" type="Sprite2D" parent="Player/Kitchen/Control/OrderBoard" unique_id=2020061581]
@@ -402,6 +409,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="NicotineBar" type="TextureProgressBar" parent="Player" unique_id=704873316]
+unique_name_in_owner = true
 visible = false
 modulate = Color(1, 1, 0.25882354, 1)
 offset_left = 739.0
@@ -409,9 +417,22 @@ offset_top = 17.0
 offset_right = 1236.0
 offset_bottom = 57.0
 step = 0.1
-value = 10.0
 nine_patch_stretch = true
 texture_progress = SubResource("PlaceholderTexture2D_yf5fn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player" unique_id=1410664499]
+layer = 10
+
+[node name="Dipendenza" type="ColorRect" parent="Player/CanvasLayer" unique_id=1723401847]
+material = SubResource("ShaderMaterial_oqjqy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("40_atqvy")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=873944172]
 unique_name_in_owner = true
