@@ -116,6 +116,7 @@ offset_top = 859.0
 offset_right = 1806.0
 offset_bottom = 946.17645
 text = "Donna"
+metadata/_edit_use_anchors_ = true
 
 [node name="Cigarette" type="Node2D" parent="Player/SmokeRoom" unique_id=619295634]
 position = Vector2(-753, -34)
@@ -201,6 +202,18 @@ theme_override_font_sizes/normal_font_size = 300
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Player/SmokeRoom" unique_id=751088448]
+offset_left = 86.0
+offset_top = 58.0
+offset_right = 1171.0
+offset_bottom = 1105.0
+bbcode_enabled = true
+text = "[img=256x256 ]res://Assets/images/c8c7264c-0fde-4ff6-8c73-404634a5c677-Photoroom.png[/img]
+
+"
+fit_content = true
 
 [node name="NicotineBar" type="TextureProgressBar" parent="Player" unique_id=704873316]
 visible = false

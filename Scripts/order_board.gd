@@ -5,65 +5,82 @@ class_name OrderBoard
 const NEW_ORDER_SFX = preload("res://Assets/sounds/sfx/NewOrder.mp3")
 
 @export var order_scene: PackedScene
-@export var order_height: float = 90.0
-@export var order_spacing: float = 10.0
+@export var order_spacing: float = 0.0
 @export var max_orders: int = 5
 
-# Custom signals as requested
+# --- DATABASE DEGLI 8 INGREDIENTI ---
+const INGREDIENTS = {
+	"insalata": {"name": "Insalata", "icon": "res://Assets/images/4ab9f1bb-725c-4edd-b880-3cf58599dafd-Photoroom.png"},
+	"pomodoro": {"name": "Pomodoro", "icon": "res://Assets/images/57f4d7b2-2d7a-4203-a7f4-78b2b676bd67.png"},
+	"pickles": {"name": "Pickles", "icon": "res://Assets/images/1i2iilgkbqda.png"},
+	"cipolla": {"name": "Cipolla", "icon": "res://Assets/images/a3e02c66-3d8e-40f5-b889-d7ff81e779f1.png"},
+	"mayo": {"name": "Mayo", "icon": "res://Assets/images/d31fc04b-68e1-4d7d-8ae7-093566d0ab85-Photoroom.png"},
+	"ketchup": {"name": "Ketchup", "icon": "res://Assets/images/cff62b82-54ad-459f-a0e1-74bd3515d832-Photoroom.png"},
+	"senape": {"name": "Senape", "icon": "res://Assets/images/67c38807-3457-4143-aa14-3b1b288d3b71-Photoroom.png"},
+	"burger_sauce": {"name": "Burger Sauce", "icon": "res://Assets/images/35aa6550-718d-48ee-9c16-55899250783d-Photoroom.png"}
+}
+
 signal spawn_order(order_details: Dictionary)
 signal remove_order()
 
-# Tracks active order nodes currently on the board
 var active_orders: Array[Control] = []
 
 func _ready() -> void:
-	# Connect signals to their respective handler functions
 	spawn_order.connect(_on_spawn_order)
 	remove_order.connect(_on_remove_order)
 
+# --- FUNZIONE DI GENERAZIONE CASUALE ---
+func generate_random_order() -> Dictionary:
+	var keys = INGREDIENTS.keys()
+	keys.shuffle()
+	
+	var num_items = randi_range(2, 4) # Sceglie da 2 a 4 ingredienti casuali
+	var order_text = "[b]ORDINE:[/b]\n"
+	var order_data_array = []
+	
+	for i in range(num_items):
+		var key = keys[i]
+		var item = INGREDIENTS[key]
+		
+		# Aggiunge icona e nome formattati con BBCode
+		order_text += "[img=32x32]%s[/img] %s\n" % [item["icon"], item["name"]]
+		order_data_array.append(key)
+		
+	return {
+		"text": order_text,
+		"ingredients": order_data_array
+	}
+
 func _on_spawn_order(order_details: Dictionary) -> void:
-	if not order_scene:
-		printerr("Order Scene is not assigned in the inspector!")
+	if not order_scene or active_orders.size() >= max_orders:
 		return
 
-	if active_orders.size() >= max_orders:
-		return # Board is full
-
-	# 1. Instantiate the order (supporting Control or NinePatchRect roots)
 	var new_order = order_scene.instantiate() as Control
 	if not new_order:
 		return
+	add_child(new_order)
 
+	new_order.size.x = size.x - 20
+	order_details = generate_random_order()
 	if new_order.has_method("setup_order"):
 		new_order.setup_order(order_details)
 		
-	if(is_visible_in_tree()):
+	if is_visible_in_tree():
 		sfxPlayer.stream = NEW_ORDER_SFX
 		sfxPlayer.play()
-	add_child(new_order)
+		
 	
-	# Set initial size width to match board padding
-	new_order.size.x = size.x - 20
-	
-	# Start position: Spawn just below the bottom of the board view
-	var start_y = size.y + order_height
-	var margin_x = 10.0
-	new_order.position = Vector2(margin_x, start_y)
-	
-	# Add to our active list (newest orders are pushed to the back)
+	var start_y = size.y + 100
+	new_order.position = Vector2(10.0, start_y)
 	active_orders.push_back(new_order)
 
-	# 2. Animate all orders into their updated positions
 	_animate_board_layout()
 
 func _on_remove_order() -> void:
 	if active_orders.is_empty():
 		return
 
-	# Remove the topmost order (index 0)
 	var top_order = active_orders.pop_front()
-
-	# Animate the removal of the topmost order (slides up and fades out)
 	var remove_tween = create_tween()
 	remove_tween.set_trans(Tween.TRANS_QUAD)
 	remove_tween.set_ease(Tween.EASE_IN)
@@ -71,21 +88,34 @@ func _on_remove_order() -> void:
 	remove_tween.parallel().tween_property(top_order, "modulate:a", 0.0, 0.3)
 	remove_tween.tween_callback(top_order.queue_free)
 
-	# Animate remaining orders shifting into their new positions
 	_animate_board_layout()
 
+#func _animate_board_layout() -> void:
+	#await get_tree().process_frame
+	#
+	#var tween = create_tween().set_parallel(true)
+	#tween.set_trans(Tween.TRANS_QUAD)
+	#tween.set_ease(Tween.EASE_OUT)
+#
+	#var current_y = 10.0
+	#for i in range(active_orders.size()):
+		#var order = active_orders[i]
+		#tween.tween_property(order, "position:y", current_y, 0.35)
+		#current_y += order.size.y + order_spacing
+		
 func _animate_board_layout() -> void:
+	await get_tree().process_frame
+	
 	var tween = create_tween().set_parallel(true)
 	tween.set_trans(Tween.TRANS_QUAD)
 	tween.set_ease(Tween.EASE_OUT)
 
-	# Layout orders so that index 0 is at the TOP, and newer orders stack downwards
+	var current_y = 10.0
 	for i in range(active_orders.size()):
 		var order = active_orders[i]
 		
-		# Index 0 gets the highest slot (closest to top = smaller Y value)
-		# Subsequent items stack downwards by adding (order_height + order_spacing)
-		var top_margin = 10.0 # Padding from the top of the board
-		var target_y = top_margin + (i * (order_height + order_spacing))
+		# Muove il biglietto alla posizione Y calcolata
+		tween.tween_property(order, "position:y", current_y, 0.35)
 		
-		tween.tween_property(order, "position:y", target_y, 0.35)
+		# Aggiunge l'altezza reale del biglietto corrente + lo spazio tra un ordine e l'altro
+		current_y += order.size.y + order_spacing
